@@ -1,0 +1,15 @@
+<md-spinner class="spinner" *ngIf="loading"></md-spinner>
+<md-card class="filter" *ngIf="!loading">
+  <md-card-content>
+    <h2>MAX Hotel price</h2>
+    <md-slider (change)="onPriceSliderChange($event)"
+               [max]="filters.priceTo"
+               [min]="filters.priceFrom"
+               [thumb-label]="true"
+               [value]="filter.maxPriceAmount">
+    </md-slider>
+  </md-card-content>
+</md-card>
+<sebm-google-map #map>
+  <app-hotels-map-content [hotels]="filteredHotels | async"></app-hotels-map-content>
+</sebm-google-map>
