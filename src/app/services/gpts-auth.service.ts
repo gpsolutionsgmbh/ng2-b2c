@@ -7,8 +7,6 @@ import {environment} from "../../environments/environment";
 @Injectable()
 export class GptsAuthService {
 
-  private url = 'http://37.187.148.231/gptp/api/';
-  private apiKey = "ROIw7Hy0Ps8enuIA7ynvimDp3OF+NoGtGHQBXKRfnbM=";
   private authParams: URLSearchParams;
   private token: string;
   private login: string;

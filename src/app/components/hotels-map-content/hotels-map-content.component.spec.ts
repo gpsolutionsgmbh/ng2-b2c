@@ -4,6 +4,8 @@ import {By} from '@angular/platform-browser';
 import {DebugElement} from '@angular/core';
 
 import {HotelsMapContentComponent} from './hotels-map-content.component';
+import {GoogleMapsAPIWrapper, AgmCoreModule} from "angular2-google-maps/core";
+import {environment} from "../../../environments/environment";
 
 describe('HotelsMapContentComponent', () => {
   let component: HotelsMapContentComponent;
@@ -11,7 +13,15 @@ describe('HotelsMapContentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HotelsMapContentComponent]
+      declarations: [HotelsMapContentComponent],
+      providers: [
+        GoogleMapsAPIWrapper
+      ],
+      imports: [
+        AgmCoreModule.forRoot({
+          apiKey: environment.googleApiKey
+        })
+      ]
     })
       .compileComponents();
   }));

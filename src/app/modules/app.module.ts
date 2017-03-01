@@ -6,7 +6,6 @@ import {AppComponent} from '../components/app/app.component';
 import {GptsAuthService} from "../services/gpts-auth.service";
 import {GptsHttpService} from "../services/gpts-http.service";
 import {MaterialModule} from "@angular/material";
-import {Md2Module} from "md2";
 import {HotelsSearchFormComponent} from '../components/hotels-search-form/hotels-search-form.component';
 import {HotelsComponent} from '../components/hotels/hotels.component';
 import {RoutingModule} from "./routing.module";
@@ -25,7 +24,7 @@ export function httpServiceFactory(backend: XHRBackend,
   }
 }
 
-const conf = {
+@NgModule({
   declarations: [
     AppComponent,
     HotelsSearchFormComponent,
@@ -37,21 +36,21 @@ const conf = {
     FormsModule,
     HttpModule,
     MaterialModule,
-    Md2Module,
     RoutingModule,
     AgmCoreModule.forRoot({
       apiKey: environment.googleApiKey
     })
   ],
-  providers: [GptsAuthService,
-    GoogleMapsAPIWrapper, {
+  providers: [
+    GptsAuthService,
+    GoogleMapsAPIWrapper,
+    {
       provide: GptsHttpService,
       useFactory: httpServiceFactory,
       deps: [XHRBackend, RequestOptions, GptsAuthService]
-    }],
+    }
+  ],
   bootstrap: [AppComponent]
-};
-
-@NgModule(conf)
+})
 export class AppModule {
 }
